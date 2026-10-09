@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artikel & Jurnal Desain — Gilkreatifin</title>
+  <meta name="description" content="Kumpulan artikel, esai visual, panduan desain sistem, tipografi, dan strategi branding oleh Gilkreatifin.">
+  <meta name="author" content="Gilkreatifin">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Artikel & Jurnal Desain — Gilkreatifin">
+  <meta property="og:description" content="Eksplorasi wawasan desain grafis, UI/UX, dan branding modern.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="articles.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Loncat ke konten artikel</a>
+
+  <!-- TOP STATUS BANNER -->
+  <aside class="status-banner" aria-label="Status Ketersediaan Proyek">
+    <div class="container status-banner__inner">
+      <span class="status-indicator">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="bannerStatusText">Tersedia untuk proyek baru &amp; freelance <strong>(Kuartal 2026)</strong></span>
+      </span>
+      <a href="index.html#contact" class="status-banner__link">Diskusi Proyek &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <header class="site-header" id="navbar">
+    <div class="container site-header__inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo" aria-label="Kembali ke halaman utama Gilkreatifin">
+        <span class="logo__symbol" id="navLogoSymbol">GK</span>
+        <span class="logo__text" id="navLogoText">GIL<strong>KREATIFIN</strong></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Navigasi Utama">
+        <ul class="nav-menu__list" role="list">
+          <li class="nav-menu__item"><a href="index.html#home" class="nav-menu__link">Home</a></li>
+          <li class="nav-menu__item"><a href="index.html#about" class="nav-menu__link">About</a></li>
+          <li class="nav-menu__item"><a href="index.html#portfolio" class="nav-menu__link">Portfolio</a></li>
+          <li class="nav-menu__item"><a href="index.html#services" class="nav-menu__link">Services</a></li>
+          <li class="nav-menu__item"><a href="articles.html" class="nav-menu__link active" aria-current="page">Articles</a></li>
+          <li class="nav-menu__item"><a href="index.html#contact" class="nav-menu__link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn theme-toggle" aria-label="Ganti mode tampilan" title="Ganti mode gelap/terang">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- CMS Admin Shortcut -->
+        <a href="admin.html" class="icon-btn" title="Buka CMS Dashboard" aria-label="Buka CMS Dashboard">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </a>
+
+        <!-- CTA Button -->
+        <a href="index.html#contact" class="btn btn--outline btn--sm nav-cta">Let's Talk</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menuToggle" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Buka menu navigasi">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer__overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer__content">
+      <div class="mobile-drawer__header">
+        <span class="logo__text" id="mobileLogoText">GIL<strong>KREATIFIN</strong></span>
+        <button id="drawerClose" class="icon-btn" aria-label="Tutup menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-drawer__list">
+        <li><a href="index.html#home" class="mobile-drawer__link">Home</a></li>
+        <li><a href="index.html#about" class="mobile-drawer__link">About</a></li>
+        <li><a href="index.html#portfolio" class="mobile-drawer__link">Portfolio</a></li>
+        <li><a href="index.html#services" class="mobile-drawer__link">Services</a></li>
+        <li><a href="articles.html" class="mobile-drawer__link active">Articles</a></li>
+        <li><a href="index.html#contact" class="mobile-drawer__link">Contact</a></li>
+        <li><a href="admin.html" class="mobile-drawer__link" style="color: var(--accent-primary);">⚙️ CMS Admin</a></li>
+      </ul>
+      <div class="mobile-drawer__footer">
+        <a href="index.html#contact" class="btn btn--primary btn--full mobile-drawer__cta">Let's Work Together</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- ARTICLES HERO HEADER -->
+    <section class="section articles-hero">
+      <div class="container">
+        <div class="articles-hero__inner">
+          <span class="section-tag">JURNAL &amp; ESSAY DESAIN</span>
+          <h1 class="articles-hero__title">Wawasan, Strategi, &amp; Gagasan Seputar Desain Modern</h1>
+          <p class="articles-hero__subtitle">
+            Kumpulan tulisan mengenai brand identity, arsitektur design system, tipografi editorial, dan estetika visual yang saya pelajari dari pengerjaan proyek nyata.
+          </p>
+
+          <!-- Search & Filter Controls -->
+          <div class="articles-controls">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="articleSearchInput" class="search-input" placeholder="Cari artikel, topik, atau kata kunci...">
+            </div>
+
+            <div class="article-tags" id="articleCategoryTags" role="tablist">
+              <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">Semua Topik</button>
+              <button class="filter-btn" data-category="Branding" role="tab" aria-selected="false">Branding</button>
+              <button class="filter-btn" data-category="UI/UX" role="tab" aria-selected="false">UI/UX</button>
+              <button class="filter-btn" data-category="Typography" role="tab" aria-selected="false">Tipografi</button>
+              <button class="filter-btn" data-category="Motion" role="tab" aria-selected="false">Motion &amp; Video</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLES FEED GRID -->
+    <section class="section articles-section">
+      <div class="container">
+        <div class="articles-grid" id="articlesGrid">
+          <!-- Dynamically populated from store.js -->
+        </div>
+
+        <div id="noArticlesMessage" class="no-articles" style="display: none;">
+          <p>Tidak ada artikel yang cocok dengan pencarian Anda.</p>
+          <button type="button" class="btn btn--secondary btn--sm" id="resetSearchBtn">Tampilkan Semua Artikel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WRITE / COMMISSION CTA BANNER -->
+    <section class="section article-cta-section">
+      <div class="container">
+        <div class="article-cta-box">
+          <div class="article-cta-text">
+            <span class="section-tag">KOLABORASI KREATIF</span>
+            <h2>Punya Ide Proyek Menantang?</h2>
+            <p>Diskusikan visi desain brand atau antarmuka produk digital Anda langsung bersama saya.</p>
+          </div>
+          <div class="article-cta-actions">
+            <a href="index.html#contact" class="btn btn--primary">Mulai Konsultasi &rarr;</a>
+            <a href="admin.html" class="btn btn--secondary">Kelola Artikel (CMS)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo__symbol" id="footerLogoSymbol">GK</span>
+            <span class="logo__text" id="footerLogoText">GIL<strong>KREATIFIN</strong></span>
+          </a>
+          <p class="footer-brand__tagline">
+            Senior Visual &amp; Product Designer. Berkomitmen menghadirkan karya desain berelevansi tinggi yang memberdayakan perkembangan brand Anda.
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navigasi Footer">
+          <span class="footer-nav__heading">Menu Navigasi</span>
+          <ul class="footer-nav__list">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Me</a></li>
+            <li><a href="index.html#portfolio">Selected Works</a></li>
+            <li><a href="index.html#services">Layanan</a></li>
+            <li><a href="articles.html">Artikel Desain</a></li>
+            <li><a href="index.html#contact">Kontak</a></li>
+            <li><a href="admin.html" style="color: var(--accent-primary);">CMS Dashboard &rarr;</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-connect">
+          <span class="footer-nav__heading">Sosial &amp; Jejaring</span>
+          <ul class="footer-nav__list">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn &rarr;</a></li>
+            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble &rarr;</a></li>
+            <li><a href="https://behance.net" target="_blank" rel="noopener noreferrer">Behance &rarr;</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram &rarr;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; <span id="currentYear">2026</span> <strong id="copyrightName">Gilkreatifin</strong>. Seluruh hak cipta dilindungi undang-undang.
+        </p>
+        <div class="footer-bottom__right">
+          <a href="admin.html" class="craft-tag" style="text-decoration: underline;">Login CMS</a>
+          <a href="#main-content" class="back-to-top" aria-label="Kembali ke atas">
+            <span>Kembali ke Atas</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULL ARTICLE READER MODAL (Native <dialog closedby="any">) -->
+  <dialog id="articleReaderModal" class="article-reader-dialog" closedby="any" aria-labelledby="readerArticleTitle">
+    <div class="article-reader__wrapper">
+      <div class="article-reader__header">
+        <div class="article-reader__meta">
+          <span class="badge badge--subtle" id="readerCategory">Kategori</span>
+          <span class="meta-dot">•</span>
+          <span id="readerDate" class="reader-date">08 Okt 2026</span>
+          <span class="meta-dot">•</span>
+          <span id="readerTime" class="reader-time">5 min read</span>
+        </div>
+        <button type="button" class="icon-btn" id="readerCloseBtn" aria-label="Tutup artikel">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="article-reader__body">
+        <h1 id="readerArticleTitle" class="article-reader__title">Judul Artikel</h1>
+        
+        <div class="article-reader__cover">
+          <img id="readerCoverImg" src="" alt="Cover artikel" width="1000" height="560">
+        </div>
+
+        <div class="article-reader__content" id="readerContent">
+          <!-- Full article markup here -->
+        </div>
+
+        <div class="article-author-card">
+          <div class="author-avatar" id="authorAvatar">GK</div>
+          <div class="author-info">
+            <h4 id="authorName">Gilkreatifin</h4>
+            <p>Senior Visual &amp; Product Designer. Berbagi pembelajaran dan dokumentasi arsitektur desain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-reader__footer">
+        <button type="button" class="btn btn--secondary" id="readerDismissBtn">Tutup Jurnal</button>
+        <button type="button" class="btn btn--primary" id="readerShareBtn">Salin Tautan Artikel</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast" role="status" aria-live="polite">
+    <div class="toast__icon">✓</div>
+    <div class="toast__message" id="toastMessage">Tindakan berhasil!</div>
+  </div>
+
+  <script src="articles.js" type="module"></script>
+</body>
+</html>
+

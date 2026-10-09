@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Dashboard — Gilkreatifin Studio</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="cms-body">
+
+  <!-- AUTH GATE / LOGIN SCREEN (SIMPLE & SECURE) -->
+  <div id="authGate" class="auth-gate">
+    <div class="auth-box">
+      <div class="auth-logo">
+        <span class="logo__symbol">GK</span>
+      </div>
+      <h2>CMS Studio Access</h2>
+      <p>Masuk untuk mengedit konten, artikel, portofolio, dan konfigurasi website.</p>
+      
+      <form id="authForm" class="auth-form">
+        <div class="form-group">
+          <label for="adminPasscode" class="form-label">PIN / Sandi Akses</label>
+          <input type="password" id="adminPasscode" class="form-input" placeholder="Masukkan sandi (default: admin123)" autocomplete="current-password" autofocus>
+          <span class="form-error" id="authError">Sandi salah. Coba: admin123</span>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Buka CMS Dashboard</button>
+        <a href="index.html" class="auth-back-link">&larr; Kembali ke Website</a>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN CMS APP (DISPLAYED ON AUTH) -->
+  <div id="cmsApp" class="cms-layout" style="display: none;">
+    <!-- SIDEBAR -->
+    <aside class="cms-sidebar">
+      <div class="cms-sidebar__brand">
+        <a href="index.html" class="logo" target="_blank" title="Buka website di tab baru">
+          <span class="logo__symbol" id="cmsBrandSymbol">GK</span>
+          <span class="logo__text" id="cmsBrandName">GIL<strong>KREATIFIN</strong></span>
+        </a>
+        <span class="cms-badge">CMS v1.2</span>
+      </div>
+
+      <nav class="cms-nav" aria-label="Navigasi Menu CMS">
+        <button type="button" class="cms-nav__item active" data-tab="tab-profile">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Profil &amp; Tampilan</span>
+        </button>
+
+        <button type="button" class="cms-nav__item" data-tab="tab-projects">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span>Portofolio &amp; Karya</span>
+          <span class="badge-count" id="countProjects">6</span>
+        </button>
+
+        <button type="button" class="cms-nav__item" data-tab="tab-articles">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <span>Artikel &amp; Jurnal</span>
+          <span class="badge-count" id="countArticles">4</span>
+        </button>
+
+        <button type="button" class="cms-nav__item" data-tab="tab-services">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span>Layanan Desain</span>
+        </button>
+
+        <button type="button" class="cms-nav__item" data-tab="tab-inbox">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Pesan Masuk (Inbox)</span>
+          <span class="badge-count" id="countInbox">0</span>
+        </button>
+
+        <button type="button" class="cms-nav__item" data-tab="tab-backup">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Backup &amp; Reset Data</span>
+        </button>
+      </nav>
+
+      <div class="cms-sidebar__footer">
+        <a href="index.html" target="_blank" class="btn btn--outline btn--sm btn--full" title="Buka website di tab baru">
+          <span>Pratinjau Web</span> &rarr;
+        </a>
+        <button type="button" class="btn btn--secondary btn--xs btn--full logout-btn" id="logoutBtn">Keluar CMS</button>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="cms-main">
+      <header class="cms-topbar">
+        <div>
+          <h1 id="cmsCurrentTabTitle" class="cms-topbar__title">Pengaturan Profil &amp; Identitas</h1>
+          <p class="cms-topbar__subtitle">Perubahan disimpan langsung ke data website secara instan.</p>
+        </div>
+        <div class="cms-topbar__actions">
+          <a href="index.html" target="_blank" class="btn btn--secondary btn--sm">Lihat Website Live</a>
+          <button type="button" class="btn btn--primary btn--sm" id="globalSaveBtn">Simpan Semua Perubahan</button>
+        </div>
+      </header>
+
+      <!-- TAB 1: PROFILE & GENERAL SETTINGS -->
+      <section id="tab-profile" class="cms-tab-pane active">
+        <form id="profileForm" class="cms-form">
+          <div class="cms-card">
+            <h2 class="cms-card__title">Informasi Utama Desainer</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="profName">Nama Desainer / Studio <span class="required">*</span></label>
+                <input type="text" id="profName" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profLogoSymbol">Monogram Logo (1-3 Huruf)</label>
+                <input type="text" id="profLogoSymbol" class="form-input" maxlength="3">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profTitle">Gelar / Jabatan Profesional</label>
+              <input type="text" id="profTitle" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profHeadline">Headline Utama (Hero Section)</label>
+              <input type="text" id="profHeadline" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profBio">Bio &amp; Deskripsi Singkat</label>
+              <textarea id="profBio" class="form-textarea" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profStatus">Status Ketersediaan Proyek (Top Banner)</label>
+              <input type="text" id="profStatus" class="form-input" placeholder="contoh: Tersedia untuk proyek baru (Kuartal 2026)">
+            </div>
+          </div>
+
+          <!-- PHOTO & AVATAR MANAGER -->
+          <div class="cms-card">
+            <h2 class="cms-card__title">Foto Profil &amp; Visual Hero</h2>
+            
+            <div class="photo-upload-wrap">
+              <div class="photo-preview">
+                <img id="profPhotoPreview" src="assets/images/profile.png" alt="Preview Foto">
+              </div>
+              <div class="photo-controls">
+                <div class="form-group">
+                  <label class="form-label" for="profPhotoUrl">Path / URL Foto</label>
+                  <input type="text" id="profPhotoUrl" class="form-input" placeholder="assets/images/profile.png atau URL web">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Atau Unggah Gambar Lokal Baru</label>
+                  <input type="file" id="profPhotoUpload" class="form-input" accept="image/*">
+                  <small class="form-hint">Mendukung format JPG, PNG, WEBP. Ukuran disarankan rasio vertikal 4:5.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACT & METRICS -->
+          <div class="cms-card">
+            <h2 class="cms-card__title">Kontak &amp; Metrik Portofolio</h2>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="profEmail">Alamat Email Bisnis</label>
+                <input type="email" id="profEmail" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profWhatsapp">Nomor WhatsApp</label>
+                <input type="text" id="profWhatsapp" class="form-input" placeholder="+62 812-xxxx-xxxx">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profLocation">Domisili &amp; Lokasi</label>
+              <input type="text" id="profLocation" class="form-input" placeholder="Jakarta, Indonesia (GMT+7)">
+            </div>
+
+            <div class="form-row form-row--3">
+              <div class="form-group">
+                <label class="form-label" for="profExp">Tahun Pengalaman</label>
+                <input type="text" id="profExp" class="form-input" placeholder="5+">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profCompleted">Proyek Selesai</label>
+                <input type="text" id="profCompleted" class="form-input" placeholder="45+">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profSatisfaction">Tingkat Kepuasan</label>
+                <input type="text" id="profSatisfaction" class="form-input" placeholder="98%">
+              </div>
+            </div>
+
+            <h3 class="subcard-title">Tautan Media Sosial</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="profLinkedin">LinkedIn</label>
+                <input type="url" id="profLinkedin" class="form-input" placeholder="https://linkedin.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profDribbble">Dribbble</label>
+                <input type="url" id="profDribbble" class="form-input" placeholder="https://dribbble.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="profBehance">Behance</label>
+                <input type="url" id="profBehance" class="form-input" placeholder="https://behance.net">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profInstagram">Instagram</label>
+                <input type="url" id="profInstagram" class="form-input" placeholder="https://instagram.com">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--primary" style="margin-top: 1rem;">Simpan Profil Desainer</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB 2: PROJECTS MANAGER -->
+      <section id="tab-projects" class="cms-tab-pane">
+        <div class="cms-card">
+          <div class="cms-card__header">
+            <div>
+              <h2 class="cms-card__title">Daftar Proyek Portofolio</h2>
+              <p class="cms-card__desc">Kelola studi kasus yang tampil pada halaman depan.</p>
+            </div>
+            <button type="button" class="btn btn--primary btn--sm" id="addNewProjectBtn">+ Tambah Proyek Baru</button>
+          </div>
+
+          <div class="cms-table-wrapper">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Thumbnail</th>
+                  <th>Judul Proyek</th>
+                  <th>Kategori</th>
+                  <th>Klien</th>
+                  <th>Tahun</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ARTICLES MANAGER -->
+      <section id="tab-articles" class="cms-tab-pane">
+        <div class="cms-card">
+          <div class="cms-card__header">
+            <div>
+              <h2 class="cms-card__title">Daftar Artikel &amp; Publikasi Jurnal</h2>
+              <p class="cms-card__desc">Tulis artikel baru atau sunting artikel yang sudah ada.</p>
+            </div>
+            <button type="button" class="btn btn--primary btn--sm" id="addNewArticleBtn">+ Tulis Artikel Baru</button>
+          </div>
+
+          <div class="cms-table-wrapper">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Cover</th>
+                  <th>Judul Artikel</th>
+                  <th>Kategori</th>
+                  <th>Waktu Baca</th>
+                  <th>Tanggal</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="articlesTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: SERVICES MANAGER -->
+      <section id="tab-services" class="cms-tab-pane">
+        <div class="cms-card">
+          <h2 class="cms-card__title">Pengaturan Layanan Spesialis</h2>
+          <p class="cms-card__desc">Edit rincian 4 penawaran paket layanan desain Anda.</p>
+
+          <form id="servicesForm">
+            <div id="servicesListContainer" class="services-edit-grid">
+              <!-- Dynamically populated 4 services cards -->
+            </div>
+            <button type="submit" class="btn btn--primary" style="margin-top: 1.5rem;">Simpan Semua Layanan</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 5: INBOX (PESAN MASUK) -->
+      <section id="tab-inbox" class="cms-tab-pane">
+        <div class="cms-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <h2 class="cms-card__title" style="margin-bottom: 0.35rem;">Pesan Masuk Formulir Proyek</h2>
+              <p class="cms-card__desc" style="margin-bottom: 0;">Daftar pesan &amp; penawaran proyek yang dikirimkan pengunjung dari halaman depan.</p>
+            </div>
+            <button type="button" class="btn btn--outline btn--xs" id="clearInboxBtn" style="color: var(--danger); border-color: var(--danger);">Bersihkan Riwayat Pesan</button>
+          </div>
+
+          <div id="inboxEmptyState" class="empty-state" style="display: none; padding: 3rem 1rem; text-align: center;">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin: 0 auto 1rem; opacity: 0.4;">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.35rem;">Belum Ada Pesan Masuk</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Setiap formulir proyek yang dikirim pengunjung akan otomatis tercatat di sini dan dialihkan ke WhatsApp Anda.</p>
+          </div>
+
+          <div id="inboxListContainer" class="inbox-list" style="display: grid; gap: 1rem;">
+            <!-- Dynamically populated inbox entries -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: BACKUP & DATA -->
+      <section id="tab-backup" class="cms-tab-pane">
+        <div class="cms-card">
+          <h2 class="cms-card__title">Cadangkan &amp; Pulihkan Data (Backup &amp; Restore)</h2>
+          <p class="cms-card__desc">Ekspor data website dalam format JSON untuk arsip atau impor ke perangkat lain.</p>
+
+          <div class="backup-actions">
+            <div class="backup-box">
+              <h3>1. Unduh Cadangan Data (Export JSON)</h3>
+              <p>Simpan salinan utuh seluruh profil, karya portofolio, dan artikel Anda ke dalam berkas .json di komputer.</p>
+              <button type="button" class="btn btn--secondary btn--sm" id="exportDataBtn">Unduh File Backup JSON</button>
+            </div>
+
+            <div class="backup-box">
+              <h3>2. Pulihkan dari Berkas JSON (Import)</h3>
+              <p>Unggah berkas JSON cadangan untuk memulihkan seluruh konten situs Anda.</p>
+              <input type="file" id="importJsonFile" accept=".json" style="margin-bottom: 0.75rem;">
+              <button type="button" class="btn btn--secondary btn--sm" id="importDataBtn">Impor &amp; Terapkan Data</button>
+            </div>
+
+            <div class="backup-box backup-box--danger">
+              <h3>3. Kembalikan ke Pengaturan Default (Factory Reset)</h3>
+              <p>Hapus seluruh data kustom dan kembalikan website ke data awal bawaan.</p>
+              <button type="button" class="btn btn--outline btn--sm" id="resetDataBtn" style="color: var(--danger); border-color: var(--danger);">Reset ke Data Pabrik</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL: PROJECT EDITOR DIALOG -->
+  <dialog id="projectEditorModal" class="cms-dialog" closedby="any">
+    <div class="cms-dialog__wrapper">
+      <div class="cms-dialog__header">
+        <h2 id="projectModalHeading" class="cms-dialog__title">Sunting Proyek</h2>
+        <button type="button" class="icon-btn" id="closeProjectModalBtn">&times;</button>
+      </div>
+
+      <form id="projectEditForm" class="cms-dialog__body">
+        <input type="hidden" id="editProjectId">
+
+        <div class="form-group">
+          <label class="form-label" for="editProjTitle">Judul Proyek <span class="required">*</span></label>
+          <input type="text" id="editProjTitle" class="form-input" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="editProjCategory">Kategori Filter</label>
+            <select id="editProjCategory" class="form-select">
+              <option value="branding uiux">Branding &amp; UI/UX</option>
+              <option value="editorial branding">Editorial &amp; Branding</option>
+              <option value="uiux">UI/UX Design</option>
+              <option value="motion">Motion &amp; Video</option>
+              <option value="branding motion">Social &amp; Motion</option>
+              <option value="editorial">Editorial &amp; 3D</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProjCategoryLabel">Label Badge Kategori</label>
+            <input type="text" id="editProjCategoryLabel" class="form-input" placeholder="contoh: Branding & UI/UX">
+          </div>
+        </div>
+
+        <div class="form-row form-row--3">
+          <div class="form-group">
+            <label class="form-label" for="editProjClient">Klien</label>
+            <input type="text" id="editProjClient" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProjYear">Tahun</label>
+            <input type="text" id="editProjYear" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProjRole">Peran Desain</label>
+            <input type="text" id="editProjRole" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="editProjTools">Tools yang Digunakan</label>
+            <input type="text" id="editProjTools" class="form-input" placeholder="contoh: Figma, Illustrator, Blender">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProjClientUrl">Tautan Website / Instagram Klien</label>
+            <input type="url" id="editProjClientUrl" class="form-input" placeholder="https://instagram.com/klien atau https://klien.com">
+            <small class="form-hint">Tautan ini akan muncul di jendela studi kasus saat diklik pengunjung.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProjImage">URL / Path Thumbnail Proyek (Kartu Depan)</label>
+          <small class="form-hint" style="margin-bottom: 0.35rem;">💡 <strong>Ukuran ideal:</strong> 1200 &times; 800 px. Ukuran apa pun otomatis disesuaikan secara proporsional.</small>
+          <input type="text" id="editProjImage" class="form-input" placeholder="https://... atau assets/images/..." required>
+          
+          <div style="margin-top: 0.65rem;">
+            <label class="form-label" style="font-size: 0.8rem; color: var(--text-secondary);">Atau Unggah Thumbnail dari Perangkat</label>
+            <input type="file" id="editProjImageUpload" class="form-input" accept="image/*">
+          </div>
+
+          <div id="projImageUrlNotice" class="form-hint" style="display: none; color: #f59e0b; margin-top: 0.5rem; background: rgba(245, 158, 11, 0.1); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid rgba(245, 158, 11, 0.3);">
+            ⚠️ <strong>Perhatian:</strong> Tautan <code>ibb.co</code> adalah tautan halaman web, bukan berkas gambar langsung. Silakan klik kanan pada gambarnya lalu pilih <em>"Copy Image Address"</em> (biasanya diawali <code>https://i.ibb.co/...</code>), atau gunakan opsi <strong>Unggah Gambar dari Perangkat</strong> di atas.
+          </div>
+
+          <div class="modal-preview-box">
+            <img id="editProjImagePreview" src="" alt="Preview gambar">
+          </div>
+          <div id="projImageDimensions" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; display: none;"></div>
+          <span id="projImageError" style="display: none; color: var(--danger); font-size: 0.78rem; margin-top: 0.35rem;">⚠️ Gambar gagal dimuat. Pastikan URL adalah link langsung ke file gambar (misal: .jpg, .png) atau unggah file langsung.</span>
+        </div>
+
+        <!-- NEW: Dedicated 16:9 Landscape Design Image for Case Study View -->
+        <div class="form-group" style="background: rgba(255, 77, 0, 0.03); padding: 1.25rem; border-radius: var(--radius-md); border: 1px dashed rgba(255, 77, 0, 0.25);">
+          <label class="form-label" for="editProjDesignImage" style="color: var(--accent-primary); font-weight: 700;">
+            Foto Hasil Desain Khusus (Landscape 16:9 di Dalam Studi Kasus)
+          </label>
+          <small class="form-hint" style="margin-bottom: 0.35rem;">
+            Foto ini akan tampil dalam ukuran penuh 16:9 sebelum teks tantangan/solusi di jendela studi kasus. Jika dikosongkan, otomatis menggunakan thumbnail di atas.
+          </small>
+          <input type="text" id="editProjDesignImage" class="form-input" placeholder="https://... atau biarkan kosong jika sama dengan thumbnail">
+
+          <div style="margin-top: 0.65rem;">
+            <label class="form-label" style="font-size: 0.8rem; color: var(--text-secondary);">Atau Unggah Foto Desain 16:9 dari Perangkat</label>
+            <input type="file" id="editProjDesignImageUpload" class="form-input" accept="image/*">
+          </div>
+
+          <div class="modal-preview-box" style="aspect-ratio: 16/9; max-height: 220px;">
+            <img id="editProjDesignImagePreview" src="" alt="Preview Foto Desain 16:9">
+          </div>
+          <div id="projDesignImageDimensions" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; display: none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProjDesc">Deskripsi Ringkas (Tampil di Kartu Depan)</label>
+          <textarea id="editProjDesc" class="form-textarea" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProjChallenge">Tantangan Proyek (Challenge)</label>
+          <textarea id="editProjChallenge" class="form-textarea" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProjSolution">Solusi &amp; Pendekatan Desain (Solution)</label>
+          <textarea id="editProjSolution" class="form-textarea" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProjImpacts">Dampak &amp; Hasil Bisnis (Satu per baris)</label>
+          <textarea id="editProjImpacts" class="form-textarea" rows="3" placeholder="Baris 1&#10;Baris 2&#10;Baris 3"></textarea>
+        </div>
+
+        <div class="cms-dialog__footer">
+          <button type="button" class="btn btn--secondary" id="cancelProjectModalBtn">Batal</button>
+          <button type="submit" class="btn btn--primary">Simpan Proyek</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- MODAL: ARTICLE EDITOR DIALOG -->
+  <dialog id="articleEditorModal" class="cms-dialog" closedby="any">
+    <div class="cms-dialog__wrapper">
+      <div class="cms-dialog__header">
+        <h2 id="articleModalHeading" class="cms-dialog__title">Tulis / Edit Artikel</h2>
+        <button type="button" class="icon-btn" id="closeArticleModalBtn">&times;</button>
+      </div>
+
+      <form id="articleEditForm" class="cms-dialog__body">
+        <input type="hidden" id="editArticleId">
+
+        <div class="form-group">
+          <label class="form-label" for="editArtTitle">Judul Artikel <span class="required">*</span></label>
+          <input type="text" id="editArtTitle" class="form-input" required>
+        </div>
+
+        <div class="form-row form-row--3">
+          <div class="form-group">
+            <label class="form-label" for="editArtCategory">Kategori</label>
+            <input type="text" id="editArtCategory" class="form-input" placeholder="contoh: Branding & Strategy" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editArtReadTime">Waktu Baca</label>
+            <input type="text" id="editArtReadTime" class="form-input" placeholder="contoh: 5 min read">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editArtDate">Tanggal Publikasi</label>
+            <input type="text" id="editArtDate" class="form-input" placeholder="contoh: 08 Oktober 2026">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editArtCover">URL / Path Gambar Cover</label>
+          <small class="form-hint" style="margin-bottom: 0.35rem;">💡 <strong>Ukuran ideal:</strong> 1200 &times; 675 px (rasio 16:9 atau 16:10). Gambar ukuran apa pun otomatis disesuaikan secara proporsional.</small>
+          <input type="text" id="editArtCover" class="form-input" placeholder="https://... atau assets/images/..." required>
+          
+          <div style="margin-top: 0.65rem;">
+            <label class="form-label" style="font-size: 0.8rem; color: var(--text-secondary);">Atau Unggah Gambar dari Perangkat</label>
+            <input type="file" id="editArtCoverUpload" class="form-input" accept="image/*">
+          </div>
+
+          <div id="artCoverUrlNotice" class="form-hint" style="display: none; color: #f59e0b; margin-top: 0.5rem; background: rgba(245, 158, 11, 0.1); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid rgba(245, 158, 11, 0.3);">
+            ⚠️ <strong>Perhatian:</strong> Tautan <code>ibb.co</code> adalah tautan halaman web, bukan berkas gambar langsung. Silakan klik kanan pada gambarnya lalu pilih <em>"Copy Image Address"</em> (biasanya diawali <code>https://i.ibb.co/...</code>), atau gunakan opsi <strong>Unggah Gambar dari Perangkat</strong> di atas.
+          </div>
+
+          <div class="modal-preview-box">
+            <img id="editArtCoverPreview" src="" alt="Preview cover artikel">
+          </div>
+          <div id="artCoverDimensions" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; display: none;"></div>
+          <span id="artCoverError" style="display: none; color: var(--danger); font-size: 0.78rem; margin-top: 0.35rem;">⚠️ Gambar gagal dimuat. Pastikan URL adalah link langsung ke file gambar (misal: .jpg, .png) atau unggah file langsung.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editArtExcerpt">Ringkasan Singkat (Excerpt)</label>
+          <textarea id="editArtExcerpt" class="form-textarea" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editArtContent">Isi Lengkap Artikel (Mendukung paragraf, &lt;h3&gt;, &lt;blockquote&gt;)</label>
+          <textarea id="editArtContent" class="form-textarea" rows="8" required></textarea>
+        </div>
+
+        <div class="cms-dialog__footer">
+          <button type="button" class="btn btn--secondary" id="cancelArticleModalBtn">Batal</button>
+          <button type="submit" class="btn btn--primary">Simpan Artikel</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast" role="status" aria-live="polite">
+    <div class="toast__icon">✓</div>
+    <div class="toast__message" id="toastMessage">Perubahan berhasil disimpan!</div>
+  </div>
+
+  <script src="admin.js" type="module"></script>
+</body>
+</html>
+

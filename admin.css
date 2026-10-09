@@ -1,0 +1,472 @@
+/* ==========================================================================
+   CMS DASHBOARD STYLESHEET
+   Gilkreatifin Content Management System
+   ========================================================================== */
+
+.cms-body {
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+
+/* 1. Auth Gate / Passcode Login */
+.auth-gate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: 2000;
+  padding: 1.5rem;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-box h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.auth-box p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.auth-form {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-back-link {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+.auth-back-link:hover {
+  color: var(--accent-primary);
+}
+
+/* 2. Main CMS Layout */
+.cms-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 900px) {
+  .cms-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3. Sidebar */
+.cms-sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 1.75rem 1.25rem;
+}
+@media (max-width: 900px) {
+  .cms-sidebar {
+    position: relative;
+    height: auto;
+  }
+}
+
+.cms-sidebar__brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.cms-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--accent-subtle);
+  color: var(--accent-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.cms-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.cms-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+.cms-nav__item:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+.cms-nav__item.active {
+  background: var(--accent-primary);
+  color: #fff;
+}
+.cms-nav__item.active svg {
+  stroke: #fff;
+}
+
+.badge-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.cms-sidebar__footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.logout-btn {
+  color: var(--text-muted);
+}
+.logout-btn:hover {
+  color: var(--danger);
+}
+
+/* 4. Main Area & Topbar */
+.cms-main {
+  padding: 2.5rem 3rem;
+  overflow-y: auto;
+}
+@media (max-width: 600px) {
+  .cms-main {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.cms-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 2.5rem;
+}
+
+.cms-topbar__title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.cms-topbar__subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.cms-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* 5. Tab Panes */
+.cms-tab-pane {
+  display: none;
+}
+.cms-tab-pane.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* 6. Cards & Forms inside CMS */
+.cms-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.cms-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cms-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cms-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.subcard-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  display: block;
+}
+
+.form-row--3 {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+@media (max-width: 600px) {
+  .form-row--3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Photo Upload Layout */
+.photo-upload-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  width: 140px;
+  height: 175px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--border-medium);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.photo-controls {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 260px;
+}
+
+/* 7. Tables */
+.cms-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.cms-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+.cms-table th, .cms-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.cms-table th {
+  background: var(--bg-tertiary);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+.cms-table tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+.table-thumb {
+  width: 48px;
+  height: 34px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+}
+
+.action-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* 8. Services Editor Grid */
+.services-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+@media (min-width: 800px) {
+  .services-edit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.service-edit-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* 9. Backup Box */
+.backup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.backup-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+.backup-box h3 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+.backup-box p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.backup-box--danger {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* 10. CMS Dialogs */
+.cms-dialog {
+  margin: auto;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  width: min(94vw, 760px);
+  max-height: 90vh;
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  outline: none;
+}
+.cms-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+}
+.cms-dialog__wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+.cms-dialog__header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+.cms-dialog__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cms-dialog__body {
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.cms-dialog__footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-preview-box {
+  width: 100%;
+  max-height: 180px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin-top: 0.5rem;
+  background: #000;
+  border: 1px solid var(--border-subtle);
+}
+.modal-preview-box img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+}
+
