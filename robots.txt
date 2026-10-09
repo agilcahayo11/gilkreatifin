@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Jangan index dashboard admin CMS
+Disallow: /admin.html
+
+Sitemap: https://gilkreatifin.my.id/sitemap.xml
+
